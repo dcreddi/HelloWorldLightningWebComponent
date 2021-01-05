@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Financial Services Account Listing" icon-name="action:new_note">
+        <template if:true={accounts.error}>
+            <!-- handle Apex error -->
+        </template>
+        <lightning-input type="search" label="Search" onchange={updateSearch}>
+        </lightning-input>
+        <div class="slds-m-around_medium">
+            
+            <template if:true={accounts}>
+                <lightning-datatable 
+                key-field="Id" 
+                data={accounts} 
+                columns={columns} 
+                hide-checkbox-column	="false"
+                show-row-number-column="true"
+                onsort={onSort}
+                sorted-by={sortBy}
+                sorted-direction={sortDirection}
+                row-number-offset	="0"
+                onsave={handleSave}
+                    draft-values={draftValues} >
+               </lightning-datatable>
+            </template>
+        </div>
+    </lightning-card>
+</template>
